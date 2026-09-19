@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magic Wiki - Disney Characters</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --gold: #f39c12;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 2rem;
+            box-sizing: border-box;
+        }
+
+        .search-bar:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 8px rgba(243, 156, 18, 0.3);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-top: 4px solid var(--gold);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e1ecf4;
+            color: #39739d;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+        }
+
+        .card p {
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #555;
+            margin-top: 1rem !important;
+            border-left: 3px solid var(--gold);
+            padding-left: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✨ The Disney Character Wiki ✨</h1>
+        <p>Explore heroes, sidekicks, and villains from your favorite universes!</p>
+    </header>
+
+    <div class="container">
+        <!-- Live Search Bar -->
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search for a character (e.g., Aladdin, Mulan)..." onkeyup="searchCharacters()">
+
+        <!-- Character Grid -->
+        <div class="grid" id="characterGrid">
+            
+            <div class="card" data-name="rapunzel">
+                <div class="card-content">
+                    <span class="tag">Princess</span>
+                    <h3>Rapunzel</h3>
+                    <p><strong>Movie:</strong> Tangled (2010)</p>
+                    <p><strong>First Appearance:</strong> Tangled</p>
+                    <p class="quote">"I've got a super-glimmer of an idea!"</p>
+                </div>
+            </div>
+
+            <div class="card" data-name="mulan">
+                <div class="card-content">
+                    <span class="tag">Heroine</span>
+                    <h3>Fa Mulan</h3>
+                    <p><strong>Movie:</strong> Mulan (1998)</p>
+                    <p><strong>First Appearance:</strong> Mulan</p>
+                    <p class="quote">"The flower that blooms in adversity is the most rare and beautiful of all."</p>
+                </div>
+            </div>
+
+            <div class="card" data-name="hades">
+                <div class="card-content">
+                    <span class="tag">Villain</span>
+                    <h3>Hades</h3>
+                    <p><strong>Movie:</strong> Hercules (1997)</p>
+                    <p><strong>First Appearance:</strong> Hercules</p>
+                    <p class="quote">"I'm about two seconds from going full meltdown here."</p>
+                </div>
+            </div>
+
+            <div class="card" data-name="stitch">
+                <div class="card-content">
+                    <span class="tag">Sidekick</span>
+                    <h3>Stitch (Experiment 626)</h3>
+                    <p><strong>Movie:</strong> Lilo & Stitch (2002)</p>
+                    <p><strong>First Appearance:</strong> Lilo & Stitch</p>
+                    <p class="quote">"Ohana means family. Family means nobody gets left behind."</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function searchCharacters() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
